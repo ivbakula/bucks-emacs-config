@@ -5,6 +5,7 @@
 ;; You should check this stuff out:
 ;; https://github.com/caiohcs/my-emacs
 ;; https://gitlab.com/olymk2/em
+
 ;; http://coldnew.github.io/coldnew-emacs
 
 (require 'package)
@@ -12,7 +13,7 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("org". "https://orgmode.org/elpa/")))
 (package-initialize)
-(package-refresh-contents)
+;(package-refresh-contents)
 
 ;; disable startup screen
 (setq inhibit-startup-message t)
@@ -61,8 +62,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-source-names-using-follow '("Buffers"))
  '(package-selected-packages
-   '(lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package)))
+   '(helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

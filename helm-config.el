@@ -73,3 +73,4 @@
   ;; helm is too heavy for `find-file-at-point'
 ;  (add-to-list 'helm-completing-read-handlers-alist (cons #'find-file-at-point nil))
   (setq helm-display-function 'my-popup-window))
+  (setq helm-follow-mode-persistent t)

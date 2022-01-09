@@ -9,8 +9,9 @@
   :config
   (add-hook 'java-mode-hook 'lsp))
 
-(add-hook 'lsp-mode-hook #'lsp-lens-mode)
-(add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+
+;(add-hook 'lsp-mode-hook #'lsp-lens-mode)
+;(add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
 
 (setq lsp-java-vmargs (list
 		       "-noverify"
@@ -20,7 +21,7 @@
 		       ;; Use lombok maybe https://projectlombok.org/
 		       )
 
-      lsp-java-java-path "/usr/lib/jvm/java-17-openjdk/bin/java"
+      lsp-java-java-path "/usr/lib/jvm/java-11-openjdk-armhf/bin/java"
       lsp-java-server-install-dir (concat EMACS_DIR "java-stuff/")
       lsp-java-workspace-dir (concat EMACS_DIR "java-stuff/workspace/")
       lsp-java-workspace-cache-dir (concat EMACS_DIR "java-stuff/.cache/")
