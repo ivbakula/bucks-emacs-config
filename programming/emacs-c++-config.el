@@ -70,5 +70,6 @@
   (("s" rtags-location-stack-forward "forward")
    ("S" rtags-location-stack-back    "back")
    )))
+
 (provide 'emacs-c++-config.el)
 ;;; emacs-c++-config.el ends here

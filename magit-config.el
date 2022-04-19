@@ -15,6 +15,28 @@
 
 ;; Todo - add main-menu magit hydra (status, clone, pull, push, remote)
 
+(defhydra magit-hydra (:exit t :color blue :hint nil)
+  "
+  _s_tatus  _l_og   _p_ull  _r_emote
+  _b_ranch  _S_how  _P_ush  _c_lone
+  "
+  ("s" (lambda ()
+	 (interactive)
+	 (magit-status)) :color green)
+  ("b" (lambda ()
+	 (interactive)
+	 (magit-branch)) :color blue)
+  ("l" (lambda ()
+	 (interactive)
+	 (magit-log)) :color blue)
+  ("S" (lambda ()
+	 (interactive)
+	 (magit-show)) :color blue)
+  ("p" magit-pull :color blue)
+  ("P" magit-push :color blue)
+  ("c" magit-clone :color blue)
+  ("r" magit-remote :color blue))
+
 ;; Todo - add magit mode hydra
 
 (provide 'magit-config)

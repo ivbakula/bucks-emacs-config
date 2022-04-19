@@ -51,10 +51,11 @@
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    ^hjkl^: move            _u_: winner undo       _p_: previous           _._ find file           _T_ treemacs                    _M_ mode specific              _t_                  ^ ^ 
    _s_:    split below     _r_: winner redo       _n_: next               _/_ locate file         _g_ git grep                    _L_ LSP                        ^ ^                  <SPC>
-   _v_:    split right     _w_: revert all        _b_: switch             _D_ dired               _f_ find file proj              ^ ^                            ^ ^                  ^ ^
-   _q_:    delete this     _N_: new frame         _K_: kill current       ^ ^                     _F_ find file other proj        ^ ^                            ^ ^                  ^ ^
+   _v_:    split right     _w_: revert all        _b_: switch             _D_ dired               _f_ find file proj              _C_ compile                    ^ ^                  ^ ^
+   _q_:    delete this     _N_: new frame         _K_: kill current       ^ ^                     _F_ find file other proj        _c_ cscope                     ^ ^                  ^ ^
    ^ ^                     ^ ^                    _x_: kill buffer        ^ ^                     _G_ magit                       ^ ^                            ^ ^                  ^ ^
    ^ ^                     ^ ^                    _Q_: kill multiple      ^ ^                     _X_ Kill project                ^ ^                            ^ ^                  ^ ^
+   ^ ^                     ^ ^                    ^ ^                     ^ ^                     _d_ project root dired          ^ ^                            ^ ^                  ^ ^
   "
 
   ;; ^Window^
@@ -89,10 +90,14 @@
   ;; ^Project^
   ("T" treemacs :exit t)
   ("g" helm-grep-do-git-grep :exit t)
-  ("f" helm-projectile-find-file :exit t)
-  ("F" helm-projectile-switch-project :exit t)
-  ("G" magit :exit t)
-  ("X" projectile-kill-buffers :color red)
+  ("f" project-find-file :exit t)
+  ("F" project-switch-project :exit t)
+  ("d" project-dired :exit t)
+  ("G" (progn
+	 (magit-hydra/body)
+	 (hydra-push '(hydra-main-menu/body))))
+
+  ("X" project-kill-buffers :color red)
 
   ;; Todo programming - run another hydra for specific programming language. Depends on the major mode, for now add elisp, c/c++, java, bash hydras. Also add run vterm 
   ("M" (progn
@@ -102,6 +107,12 @@
   ("L" (progn
 	 (hydra-lsp/body)
 	 (hydra-push '(hydra-main-menu/body))))
+
+  ("c" (progn
+	 (hydra-cscope/body)
+	 (hydra-push '(hydra-main-menu/body))))
+
+  ("C" project-compile :exit t)
 
   ;; Todo toggle - turn stuff on/off
   ;; case insensitive search, fuzzy-find, trailing whitespace, tabs, line-numbers...
