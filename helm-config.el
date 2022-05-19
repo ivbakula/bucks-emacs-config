@@ -55,8 +55,7 @@
 		helm-locate-fuzzy-match t
 		helm-projectile-fuzzy-match t
 		helm-semantic-fuzzy-match t)
-  :bind (:map evil-normal-state-map
-			  ([remap apropos] . helm-apropos)
+  :bind (([remap apropos] . helm-apropos)
 			  ([remap find-library] . helm-locate-library)
                           ([remap bookmark-jump] . helm-bookmarks)
                           ([remap locate] . helm-locate)
@@ -68,7 +67,8 @@
 			  ([remap execute-extended-command] . helm-M-x)
 			  ([remap find-file] . helm-find-files)
 			  ([remap imenu] . helm-semantic-or-imenu)
-			  ([remap projectile-find-file] . helm-projectile-find-file))
+			  ([remap projectile-find-file] . helm-projectile-find-file)
+			  ([remap isearch-forward] . swiper-isearch))
   :config
   ;; helm is too heavy for `find-file-at-point'
 ;  (add-to-list 'helm-completing-read-handlers-alist (cons #'find-file-at-point nil))

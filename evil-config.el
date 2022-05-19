@@ -16,16 +16,6 @@
     (setq evil-want-fine-undo t)
     (evil-mode 1)))
 
-(use-package evil-collection
-  :ensure t
-  :config
-  (progn
-    (evil-collection-init '(calendar dired calc ediff magit compilation-mode help))))
-
-(setq compilation-mode-map evil-normal-state-map
-      magit-mode-map evil-normal-state-map)
-
-
 (use-package evil-leader
   :ensure t)
 

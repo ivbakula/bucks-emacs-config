@@ -71,21 +71,28 @@
 :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
 
 (use-package lsp-mode
-:ensure t
-:hook (
-   (lsp-mode . lsp-enable-which-key-integration)
-   (java-mode . #'lsp-deferred))
-
-:init (setq lsp-keymap-prefix "C-c l"
-	    gc-cons-threshold (* 1024 1024)
-	    read-process-output-max (* 5 1024 1024)  ; 5 mb
-	    lsp-enable-file-watchers nil
-	    lsp-idle-delay 100 
-	    company-idle-delay 100000
-	    company-minimum-prefix-length 2)
-:config (setq lsp-completion-provider :capf)
-:bind (:map lsp-mode-map
-	    ("M-q" . company-capf)))
+  :ensure t
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+	 (java-mode . #'lsp-deferred)
+	 (prog-mode . lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :init (setq lsp-keymap-prefix "C-c l"
+	      lsp-log-io t
+	      lsp-enable-file-watchers nil
+	      read-process-output-max (* 1024 1024)
+	      lsp-completion-provider :capf
+	      lsp-idle-delay 0.500)
+  :config
+  (setq lsp-intelephense-multi-root nil)
+  (with-eval-after-load 'lsp-intelephense
+    (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (progn
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+		      :major-modes '(c-mode c++-mode)
+		      :remote? t
+		      :server-id 'clangd-remote))))
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
@@ -128,5 +135,17 @@
   ("e" lsp-treemacs-errors-list)
   ("q" hydra-pop))
 
+(defhydra hydra-cscope (:exit t :color blue)
+  "
+  ^function^
+  ----------------------------------------------------------------------- 
+  _C_alled
+  _c_alling
+  "
+  ;; ^Function^
+  ("C" helm-cscope-find-called-function)
+  ("c" (lambda ()
+	 (interactive)
+	 (helm-cscope-find-calling-this-function-no-prompt))))
 (provide 'programming-general-config)
 ;;; programming-general-config.el ends here

@@ -13,7 +13,7 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("org". "https://orgmode.org/elpa/")))
 (package-initialize)
-;(package-refresh-contents)
+(package-refresh-contents)
 
 ;; disable startup screen
 (setq inhibit-startup-message t)
@@ -42,13 +42,35 @@
       projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory))
 
 
+;; eshell stuff
+(add-hook 'eshell-mode-hook
+	  (lambda ()
+	    (setenv "PAGER" "cat")
+	    (setenv "EDITOR" "emacsclient")))
+
+(defun eshell/clear ()
+  "Clear the eshell buffer"
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (eshell-send-input)))
+
 (require 'use-package)
-(load-file (concat EMACS_DIR "evil-config.el"))
+
+(when (eq window-system 'w32)
+  (setq tramp-default-method "plink")
+  (set-buffer-file-coding-system 'unix)
+  (when (and (not (string-match putty-directory (getenv "PATH")))
+	     (file-directory-p putty-directory))
+    (setenv "PATH" (concat putty-directory ";" (genenv "PATH")))
+    (add-to-list 'exec-path putty-directory)))
+
+;;(load-file (concat EMACS_DIR "evil-config.el"))
 (load-file (concat EMACS_DIR "helm-config.el"))
-(load-file (concat EMACS_DIR "hydra-config.el"))
+;;(load-file (concat EMACS_DIR "hydra-config.el"))
 (load-file (concat EMACS_DIR "look-and-feel.el"))
 (load-file (concat EMACS_DIR "custom-misc-func.el"))
 (load-file (concat EMACS_DIR "magit-config.el"))
+(load-file (concat EMACS_DIR "org-mode.el"))
 (load-file (concat EMACS_DIR "programming/programming-general-config.el"))
 
 (run-hooks 'after-init-hook 'delayed-warnings-hook)
@@ -62,10 +84,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(helm-source-names-using-follow '("Buffers"))
+ '(helm-source-names-using-follow '("switch-to-buffer" "Buffers"))
  '(package-selected-packages
-   '(helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
- '(warning-suppress-types '((comp))))
+   '(eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+ '(warning-suppress-types '((lsp-mode) (lsp-mode) (lsp-mode) (lsp-mode) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
