@@ -66,7 +66,7 @@
 
 ;;(load-file (concat EMACS_DIR "evil-config.el"))
 (load-file (concat EMACS_DIR "helm-config.el"))
-;;(load-file (concat EMACS_DIR "hydra-config.el"))
+(load-file (concat EMACS_DIR "hydra-config.el"))
 (load-file (concat EMACS_DIR "look-and-feel.el"))
 (load-file (concat EMACS_DIR "custom-misc-func.el"))
 (load-file (concat EMACS_DIR "magit-config.el"))
@@ -85,8 +85,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-source-names-using-follow '("switch-to-buffer" "Buffers"))
+ '(lsp-clangd-binary-path "/usr/bin/clangd-14")
+ '(lsp-clients-clangd-args '("--query-driver=\"*g++*\""))
  '(package-selected-packages
-   '(eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+   '(fontawesome eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
  '(warning-suppress-types '((lsp-mode) (lsp-mode) (lsp-mode) (lsp-mode) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

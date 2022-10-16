@@ -121,6 +121,6 @@
   ;; Escape
   ("SPC" nil :exit t))
 
-(define-key evil-normal-state-map (kbd "SPC") 'hydra-main-menu/body)
+(define-key global-map (kbd "<f1>") 'hydra-main-menu/body)
 (provide 'hydra-config)
 ;;; hydra-config.el ends here
