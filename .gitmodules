@@ -1,0 +1,6 @@
+[submodule "rtags"]
+	path = rtags
+	url = https://github.com/Andersbakken/rtags.git
+[submodule "bucks-emacs-config"]
+	path = bucks-emacs-config
+	url = git@github.com:ivbakula/bucks-emacs-config.git
