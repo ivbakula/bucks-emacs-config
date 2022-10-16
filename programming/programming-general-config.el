@@ -14,10 +14,6 @@
 
 (setq treemacs-show-hidden-files nil)
 
-(use-package projectile
-  :ensure t
-  :init (projectile-mode +1))
-
 ;; TODO customize this more. Take a look at: https://github.com/justbur/emacs-which-key
 (use-package which-key
   :ensure t
@@ -59,10 +55,10 @@
 :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
          ([remap xref-find-references] . lsp-ui-peek-find-references))
-:init (setq lsp-ui-doc-delay 1.5
-      lsp-ui-doc-position 'bottom
-	  lsp-ui-doc-max-width 100
-))
+:init (setq lsp-ui-doc-show-with-mouse nil ;; disable documentation on mouse hower. This is pretty annoying, cause I don't really use mouse.
+	    lsp-ui-doc-delay 1.5
+	    lsp-ui-doc-position 'bottom
+	    lsp-ui-doc-max-width 100))
 
 (use-package helm-lsp
 :ensure t
@@ -73,16 +69,24 @@
 (use-package lsp-mode
   :ensure t
   :hook ((lsp-mode . lsp-enable-which-key-integration)
+	 ;;(add programming language mode hooks here if necessary)
 	 (java-mode . #'lsp-deferred)
-	 (prog-mode . lsp-deferred))
+	 (c-mode . #'lsp-deferred)
+	 (c++-mode . #'lsp-deferred))
   :commands (lsp lsp-deferred)
-  :init (setq lsp-keymap-prefix "C-c l"
-	      lsp-log-io t
-	      lsp-enable-file-watchers nil
-	      read-process-output-max (* 1024 1024)
-	      lsp-completion-provider :capf
-	      lsp-idle-delay 0.500)
+  :init
+  (setq lsp-keymap-prefix "C-c l"
+	lsp-log-io t
+	lsp-enable-file-watchers nil
+	gc-cons-threshold (* 1024 1024) ;; garbage collector memory trshold
+	read-process-output-max (* 5 1024 1024) ; 5mb
+	lsp-idle-delay 100
+	company-idle-delay 100000       ;; don't autocomplete unless I tell you. This will make emacs reasonably responsive in big repositories
+	company-minimum-prefix-length 2) ;; don't autocomplete unless you have 2 chars to complete. This is really unnecessary because of line above
+  (lsp-ui-peek-mode)
+  :bind (:map lsp-mode-map ("M-q" . company-capf)) ;; set autocomplete keybinding to M-q
   :config
+  (setq lsp-completion-provider :capf)
   (setq lsp-intelephense-multi-root nil)
   (with-eval-after-load 'lsp-intelephense
     (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))

@@ -59,7 +59,7 @@
    (("/" rtags-find-symbol              "symbol             ")
     ("#" rtags-find-symbol-at-point     "symbol at point    ")
     (":" rtags-find-references          "references         ")
-    ("." rtags-find-references-at-point "references at point")
+    ("." rtags-find-all-references-at-point "references at point")
     ("f" rtags-find-file                "file               ")
     ("v" rtags-find-virtuals-at-point   "virtuals at point  "))
   "Rtags refactor"
@@ -69,6 +69,7 @@
   "Rtags stack"
   (("s" rtags-location-stack-forward "forward")
    ("S" rtags-location-stack-back    "back")
+   ("C" rtags-find-functions-called-by-this-function "find function calls")
    )))
 
 (provide 'emacs-c++-config.el)
