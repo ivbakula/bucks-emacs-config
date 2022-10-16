@@ -1,3 +1,11 @@
 elpa
 recentf
 transient
+/.dap-breakpoints
+/.lsp-session-v1
+/bookmarks
+/eclipse.jdt.ls/
+/eln-cache/
+/java-stuff/
+/projects
+/tramp

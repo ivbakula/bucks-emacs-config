@@ -1,0 +1,6 @@
++ emacs 28.1 built from source
+
++ Build configuration:
+"--prefix=$HOME/.local --without-mailutils --with-x-toolkit=gtk2 --with-native-compilation --with-json --without-xwidgets --with-cairo --with-modules --without-compress-install --with-imagemagick --with-harfbuzz --with-jpeg --with-png --with-rsvg --with-tiff --with-wide-int --with-xft --with-xml2 --with-xpm 'CFLAGS=-O2 -mtune=native -march=native -fomit-frame-pointer'"
+
++ You should probably try CFLAGS=O3
