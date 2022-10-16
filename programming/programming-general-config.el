@@ -8,6 +8,13 @@
 ;;; Auto complete parens
 (electric-pair-mode)
 
+;;; Jump to subword if camelCase
+(subword-mode)
+
+;;; Spell checker (useful for comments)
+;;; TODO prog-mode hooks for various programming languages
+(flyspell-prog-mode)
+
 (use-package treemacs-evil
   :ensure t
   :init)
