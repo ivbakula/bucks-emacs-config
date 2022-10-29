@@ -13,7 +13,7 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("org". "https://orgmode.org/elpa/")))
 (package-initialize)
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 ;; disable startup screen
 (setq inhibit-startup-message t)
@@ -41,7 +41,6 @@
       auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-cache-directory)
       projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory))
 
-
 ;; eshell stuff
 (add-hook 'eshell-mode-hook
 	  (lambda ()
@@ -55,14 +54,6 @@
     (eshell-send-input)))
 
 (require 'use-package)
-
-(when (eq window-system 'w32)
-  (setq tramp-default-method "plink")
-  (set-buffer-file-coding-system 'unix)
-  (when (and (not (string-match putty-directory (getenv "PATH")))
-	     (file-directory-p putty-directory))
-    (setenv "PATH" (concat putty-directory ";" (genenv "PATH")))
-    (add-to-list 'exec-path putty-directory)))
 
 ;;(load-file (concat EMACS_DIR "evil-config.el"))
 (load-file (concat EMACS_DIR "helm-config.el"))
@@ -84,11 +75,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-basic-offset 'set-from-style)
+ '(custom-safe-themes
+   '("830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(helm-source-names-using-follow '("switch-to-buffer" "Buffers"))
+ '(large-file-warning-threshold 1000000000000000000000000000000000000000)
  '(lsp-clangd-binary-path "/usr/bin/clangd-14")
  '(lsp-clients-clangd-args '("--query-driver=\"*g++*\""))
  '(package-selected-packages
-   '(fontawesome eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+   '(flycheck-psalm protobuf-mode god-mode eglot gruber-darker-theme simple-mpc helm-emms emms-player-mpv-jp-radios fontawesome eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+ '(tab-stop-list
+   '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
+ '(tramp-copy-size-limit 100240)
  '(warning-suppress-types '((lsp-mode) (lsp-mode) (lsp-mode) (lsp-mode) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
