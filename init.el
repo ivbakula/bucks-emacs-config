@@ -13,7 +13,7 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("org". "https://orgmode.org/elpa/")))
 (package-initialize)
-;;(package-refresh-contents)
+(package-refresh-contents)
 
 ;; disable startup screen
 (setq inhibit-startup-message t)
@@ -63,7 +63,7 @@
 (load-file (concat EMACS_DIR "magit-config.el"))
 (load-file (concat EMACS_DIR "org-mode.el"))
 (load-file (concat EMACS_DIR "programming/programming-general-config.el"))
-
+(load-file (concat EMACS_DIR "java-runner/java-runner.el"))
 (run-hooks 'after-init-hook 'delayed-warnings-hook)
 (run-hooks 'emacs-startup-hook 'term-setup-hook)
 (run-hooks 'window-setup-hook)

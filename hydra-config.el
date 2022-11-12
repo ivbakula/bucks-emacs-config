@@ -47,7 +47,7 @@
 ;; TODO Add some interesting lsp language agnostic features to Programming submenu
 (defhydra hydra-main-menu (:exit t :color blue :hint nil)
   "
-   ^Window^                ^Frame^                ^Buffer^                ^Find^                  ^Project^                       ^Programming^                  ^Toggle^            ^EXIT^
+   ^Window^                ^Frame^                ^Buffer^                ^Find^                  ^Project^                       ^Programming^                  ^Misc^            ^EXIT^
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    ^hjkl^: move            _u_: winner undo       _p_: previous           _._ find file           _T_ treemacs                    _M_ mode specific              _t_                  ^ ^ 
    _s_:    split below     _r_: winner redo       _n_: next               _/_ locate file         _g_ git grep                    _L_ LSP                        ^ ^                  <SPC>
@@ -116,7 +116,7 @@
 
   ;; Todo toggle - turn stuff on/off
   ;; case insensitive search, fuzzy-find, trailing whitespace, tabs, line-numbers...
-  ("t" nil)
+  ("e" compiler-explorer-new-session)
 
   ;; Escape
   ("SPC" nil :exit t))

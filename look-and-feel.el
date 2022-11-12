@@ -15,6 +15,8 @@
 ;; Show column number at the bottom of the buffer
 (setq column-number-mode t)
 
+(subword-mode)
+
 ;; Show linenumber at the beginning of the line
 (global-display-line-numbers-mode)
 
@@ -28,6 +30,21 @@
   :init
   (doom-modeline-mode 1))
 
+(defun my-god-mode-update-cursor-type ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
+
+(add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+
+(setq god-mode-enable-function-key-translation nil)
+(require 'god-mode)
+(god-local-mode)
+(global-set-key (kbd "<escape>") #'god-local-mode)
+(define-key god-local-mode-map [(i)] #'god-local-mode)
+
+(use-package undo-tree
+  :ensure t
+  :init
+  (undo-tree-mode))
 
 (provide 'look-and-feel)
 ;;; look-and-feel.el ends here

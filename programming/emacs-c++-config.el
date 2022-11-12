@@ -22,7 +22,13 @@
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
+
 (setq c-basic-offset 4)            ;; set 4 spaces indentation level (java, c, c++)
+
+(define-key c-mode-base-map (kbd "C-c C-f") 'clang-format-region)
+
+(use-package compiler-explorer
+  :ensure t)
 
 (use-package rtags
   :ensure t
@@ -71,6 +77,14 @@
    ("S" rtags-location-stack-back    "back")
    ("C" rtags-find-functions-called-by-this-function "find function calls")
    )))
+
+(major-mode-hydra-define compiler-explorer-mode nil
+  ("Compiler opts"
+   (("L" compiler-explorer-make-link         "make-link")
+    ("I" compiler-explorer-set-input         "set input")
+    ("S" compiler-explorer-set-compiler      "set compiler")
+    ("C" compiler-explorer-set-compiler-args "set compiler args"))))
+
 
 (provide 'emacs-c++-config.el)
 ;;; emacs-c++-config.el ends here
