@@ -13,7 +13,7 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("org". "https://orgmode.org/elpa/")))
 (package-initialize)
-(package-refresh-contents)
+;;(package-refresh-contents)
 
 ;; disable startup screen
 (setq inhibit-startup-message t)
@@ -41,20 +41,23 @@
       auto-save-list-file-prefix (expand-file-name "auto-save-list/.saves-" user-cache-directory)
       projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" user-cache-directory))
 
-;; eshell stuff
-(add-hook 'eshell-mode-hook
-	  (lambda ()
-	    (setenv "PAGER" "cat")
-	    (setenv "EDITOR" "emacsclient")))
 
-(defun eshell/clear ()
+(defun eshell-clear ()
   "Clear the eshell buffer"
+  (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)
     (eshell-send-input)))
 
+(add-hook 'eshell-mode-hook (lambda ()
+			      (define-key eshell-mode-map (kbd "C-l") 'eshell-clear)))
+
+;(define-key eshell-mode-map (kbd "C-l") 'eshell-clear)
+
+
 (require 'use-package)
 
+;; TODO add smartparens, volatile highlights  mode
 ;;(load-file (concat EMACS_DIR "evil-config.el"))
 (load-file (concat EMACS_DIR "helm-config.el"))
 (load-file (concat EMACS_DIR "hydra-config.el"))
@@ -63,7 +66,7 @@
 (load-file (concat EMACS_DIR "magit-config.el"))
 (load-file (concat EMACS_DIR "org-mode.el"))
 (load-file (concat EMACS_DIR "programming/programming-general-config.el"))
-(load-file (concat EMACS_DIR "java-runner/java-runner.el"))
+
 (run-hooks 'after-init-hook 'delayed-warnings-hook)
 (run-hooks 'emacs-startup-hook 'term-setup-hook)
 (run-hooks 'window-setup-hook)
@@ -94,3 +97,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)
+

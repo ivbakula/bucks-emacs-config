@@ -17,6 +17,10 @@
 
 (subword-mode)
 
+;; show tabs
+(whitespace-mode)
+(setq whitespace-style '(trailing tabs tab-mark))
+
 ;; Show linenumber at the beginning of the line
 (global-display-line-numbers-mode)
 
@@ -37,7 +41,6 @@
 
 (setq god-mode-enable-function-key-translation nil)
 (require 'god-mode)
-(god-local-mode)
 (global-set-key (kbd "<escape>") #'god-local-mode)
 (define-key god-local-mode-map [(i)] #'god-local-mode)
 
