@@ -21,7 +21,7 @@
 		       ;; Use lombok maybe https://projectlombok.org/
 		       )
 
-      lsp-java-java-path "/usr/lib/jvm/java-11-openjdk-armhf/bin/java"
+      lsp-java-java-path "/usr/lib/jvm/java-20-openjdk/bin/java"
       lsp-java-server-install-dir (concat EMACS_DIR "java-stuff/")
       lsp-java-workspace-dir (concat EMACS_DIR "java-stuff/workspace/")
       lsp-java-workspace-cache-dir (concat EMACS_DIR "java-stuff/.cache/")
@@ -29,6 +29,8 @@
       ;set path to maven's settings.xml
       ;lsp-java-configuration-maven-user-settings ""
       lsp-java-completion-enabled t)
+
+(setenv "JAVA_HOME" "/usr/lib/jvm/java-20-openjdk")
 
 (major-mode-hydra-define java-mode nil
   ("Imports"

@@ -34,15 +34,24 @@
   :init
   (doom-modeline-mode 1))
 
-(defun my-god-mode-update-cursor-type ()
-  (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
+(use-package nerd-icons
+  :ensure t
+  :init)
+
+(use-package fontawesome
+  :ensure t
+  :init)
+
+;; (defun my-god-mode-update-cursor-type ()
+;;   (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
 
 (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
 
-(setq god-mode-enable-function-key-translation nil)
-(require 'god-mode)
-(global-set-key (kbd "<escape>") #'god-local-mode)
-(define-key god-local-mode-map [(i)] #'god-local-mode)
+;; (setq god-mode-enable-function-key-translation nil)
+;; (require 'god-mode)
+;; (global-set-key (kbd "<escape>") #'god-local-mode)
+;; (global-set-key (kbd "M-g C-g") #'god-local-mode)
+;; (define-key god-local-mode-map [(i)] #'god-local-mode)
 
 (use-package undo-tree
   :ensure t
