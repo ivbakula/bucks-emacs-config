@@ -65,8 +65,9 @@
 (load-file (concat EMACS_DIR "custom-misc-func.el"))
 (load-file (concat EMACS_DIR "magit-config.el"))
 (load-file (concat EMACS_DIR "org-mode.el"))
-(load-file (concat EMACS_DIR "programming/programming-general-config.el"))
-
+;;(load-file (concat EMACS_DIR "programming/programming-general-config.el"))
+(electric-pair-mode)
+(load-file (concat EMACS_DIR "programming/ctags.el"))
 (run-hooks 'after-init-hook 'delayed-warnings-hook)
 (run-hooks 'emacs-startup-hook 'term-setup-hook)
 (run-hooks 'window-setup-hook)
@@ -86,7 +87,7 @@
  '(lsp-clangd-binary-path "/usr/bin/clangd-14")
  '(lsp-clients-clangd-args '("--query-driver=\"*g++*\""))
  '(package-selected-packages
-   '(evil-nerd-commenter nerd-icons-ivy-rich nerd-icons-ibuffer nerd-icons-completion nerd-icons-dired nerdtab treemacs-nerd-icons doom topsy unicode-fonts hideshow-org sauron verilog-ext htmlize slime-company rainbow-delimiters rainbow-blocks slime flycheck-psalm protobuf-mode god-mode eglot gruber-darker-theme simple-mpc helm-emms emms-player-mpv-jp-radios fontawesome eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
+   '(company-ctags ctags-update auto-complete-exuberant-ctags lean-mode flycheck-yamllint yaml-mode yasnippet-lean yasnippet-classic-snippets elpy treemacs-perspective treemacs-all-the-icons treemacs-icons-dired evil-nerd-commenter nerd-icons-ivy-rich nerd-icons-ibuffer nerd-icons-completion nerd-icons-dired nerdtab treemacs-nerd-icons doom topsy unicode-fonts hideshow-org sauron verilog-ext htmlize slime-company rainbow-delimiters rainbow-blocks slime flycheck-psalm protobuf-mode god-mode eglot gruber-darker-theme simple-mpc helm-emms emms-player-mpv-jp-radios fontawesome eyebrowse ob-diagrams speed-type speeddating ace-link bitbake bongo cmake-ide cpputils-cmake cmake-project cmake-mode auto-complete-auctex auctex wucuo helm-cscope benchmark-init evil-collection haskell-mode lsp-haskell w3m helm-file-preview json-rpc lsp-java-boot jdee google-c-style vterm clang-format+ flycheck-clang-tidy helm-mode-manager helm-lsp lsp-ui flycheck yasnippet-snippets company magit which-key projectile treemacs-evil doom-modeline smooth-scrolling evil-leader major-mode-hydra vi-tilde-fringe helm-rtags yasnippet lsp-java solarized-theme use-package))
  '(tab-stop-list
    '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
  '(tramp-copy-size-limit 100240)

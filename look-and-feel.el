@@ -15,6 +15,47 @@
 ;; Show column number at the bottom of the buffer
 (setq column-number-mode t)
 
+;; Highlight opening and closing delimeters
+(show-paren-mode)
+
+;;; Auto complete parens
+(electric-pair-mode)
+
+
+
+;;; Spell checker (useful for comments)
+;;; TODO prog-mode hooks for various programming languages
+(flyspell-prog-mode)
+
+;; TODO customize this more. Take a look at: https://github.com/justbur/emacs-which-key
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  (add-hook 'java-mode-hook 'lsp)
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp))
+
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode))
+(define-key yas-minor-mode-map (kbd "C-TAB") yas-maybe-expand)
+
+(use-package yasnippet-snippets
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode)
+  ;; don't bother me with errors until I save 
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
+
 (subword-mode)
 
 ;; show tabs
@@ -45,7 +86,7 @@
 ;; (defun my-god-mode-update-cursor-type ()
 ;;   (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
 
-(add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+;; (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
 
 ;; (setq god-mode-enable-function-key-translation nil)
 ;; (require 'god-mode)

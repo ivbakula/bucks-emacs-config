@@ -2,59 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Highlight opening and closing delimeters
-(show-paren-mode)
-
-;;; Auto complete parens
-(electric-pair-mode)
-
-;;; Jump to subword if camelCase
-(subword-mode)
-
-;;; Spell checker (useful for comments)
-;;; TODO prog-mode hooks for various programming languages
-(flyspell-prog-mode)
-
 (use-package treemacs-evil
   :ensure t
   :init)
 
 (setq treemacs-show-hidden-files nil)
 
-;; TODO customize this more. Take a look at: https://github.com/justbur/emacs-which-key
-(use-package which-key
-  :ensure t
-  :init
-  (which-key-mode)
-  (add-hook 'java-mode-hook 'lsp)
-  (add-hook 'c-mode-hook 'lsp)
-  (add-hook 'c++-mode-hook 'lsp))
-
-(use-package company
-  :ensure t
-  :init
-  (global-company-mode))
-
-(use-package yasnippet
-  :config
-  (yas-global-mode)) 
-
-(use-package yasnippet-snippets
-  :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode)
-  ;; don't bother me with errors until I save 
-  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
-
 (use-package lsp-treemacs
   :after (lsp-mode treemacs-evil)
   :ensure t
   :commands lsp-treemacs-errors-list
   :bind (:map lsp-mode-map
-			  ("M-9" . lsp-treemacs-errors-list)))
+	      ("M-9" . lsp-treemacs-errors-list)))
 
 (use-package lsp-ui
 :ensure t
